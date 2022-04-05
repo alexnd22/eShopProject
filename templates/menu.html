@@ -1,0 +1,165 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'icons/diamond_white_24dp.svg' %}" alt="" width="30" height="30"
+                 class="d-inline-block align-text-top">
+            eShop Project
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">Home</a>
+                </li>
+
+                {% if request.user.is_authenticated %}
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Category
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" href="{% url 'create_category' %}">Create a new
+                                category</a>
+                            </li>
+
+                            <li><a class="dropdown-item" href="{% url 'list_of_categories' %}">List of
+                                categories</a>
+                            </li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Products
+                        </a>
+
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" href="{% url 'create_product' %}">Create a new product</a>
+                            </li>
+
+
+                            <li><a class="dropdown-item" href="{% url 'list_of_products' %}">List of products</a>
+                            </li>
+
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            All categories
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for category in allcategories %}
+                                <li><a class="dropdown-item"
+                                       href="{% url 'products_per_category' category.id %}">{{ category.name }}</a>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                    </li>
+
+                    <form class="d-flex">
+                        <input class="form-control me-1" type="search" placeholder="" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+
+                {% endif %}
+
+            </ul>
+
+            {% if request.user.is_authenticated %}
+
+                <div class="dropdown text-light">
+                    <button class="dropdown-toggle btn text-light" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'icons/shopping_cart_black_24dp.svg' %}">
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                        <li class="nav-item dropdown">
+
+                            {% for category in allcategories %}
+                                <li><a class="dropdown-item"
+                                       href="{% url 'products_per_category' category.id %}">{{ category.name }}</a>
+                                </li>
+                            {% endfor %}
+
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li><a class="dropdown-item" href="{% url 'open_cart_view' %}">
+                            Cart Info
+                        </a></li>
+                    </ul>
+                </div>
+
+                <div class="dropdown text-light">
+                    <button class="dropdown-toggle btn text-light" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'icons/person_black_24dp.svg' %}">{{ request.user }}
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+                        <li><a class="dropdown-item" href="{% url 'list_of_products' %}">List of
+                            products</a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li><a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+
+            {% else %}
+
+                <a href="{% url 'create_user' %}" class="btn btn-secondary">Sign up</a>
+                <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+
+            {% endif %}
+
+        </div>
+    </div>
+</nav>
