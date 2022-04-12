@@ -4,7 +4,14 @@
 {% endblock %}
 
 {% block content %}
+    <br>
+    <br>
+    <br>
     {% for cart_item in cart_items %}
         <p> {{ cart_item }}</p>
     {% endfor %}
+    <form method="post" action="{% url 'checkout' %}">
+        {% csrf_token %}
+        <button type="submit">Checkout</button>
+    </form>
 {% endblock %}
