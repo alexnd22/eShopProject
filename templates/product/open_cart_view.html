@@ -10,8 +10,9 @@
     {% for cart_item in cart_items %}
         <p> {{ cart_item }}</p>
     {% endfor %}
+
     <form method="post" action="{% url 'checkout' %}">
         {% csrf_token %}
-        <button type="submit">Checkout</button>
+        <button type="submit" class="btn btn-primary">Checkout</button>
     </form>
 {% endblock %}

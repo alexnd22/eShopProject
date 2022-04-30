@@ -19,7 +19,7 @@ class UserExtendCreateView(CreateView):
         if form.is_valid() and not form.errors:
             user = form.save(commit=False)
             user.save()
-            get_group = Group.objects.get(name='client')
+            get_group = Group.objects.get(name='Clients')
             get_group.user_set.add(user.id)
             # send_mail()
 

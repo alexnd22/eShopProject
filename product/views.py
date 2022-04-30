@@ -55,7 +55,6 @@ def details_product_with_popup(request, pk):
     return render(request, 'product/list_of_products.html', current_details_product)
 
 
-@login_required()
 def get_products_per_category(request, pk):
     products_per_category = Product.objects.filter(category_id=pk)
     get_category = Category.objects.get(id=pk)
@@ -71,7 +70,7 @@ def get_open_cart(request):
         return Cart.objects.create(user=request.user, status='open')
 
 
-@login_required()
+@login_required(login_url='/login/')
 def add_products_to_cart(request):
     if request.method == 'POST':
         product_id = request.POST.get('product_id')
@@ -85,3 +84,5 @@ def add_products_to_cart(request):
         else:
             CartItem.objects.create(cart=cart, product_id=product_id, quantity=quantity)
         return redirect(request.META['HTTP_REFERER'])
+    else:
+        return redirect('list_of_products')

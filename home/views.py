@@ -25,7 +25,7 @@ def checkout_view(request):
     cart_items = CartItem.objects.filter(cart=cart)
     for cart_item in cart_items:
         product = cart_item.product
-        product.stock -= cart_item.quantity
+        product.quantity -= cart_item.quantity
         product.save()
     cart.status = 'closed'
     cart.save()
@@ -35,5 +35,5 @@ def checkout_view(request):
     #                   f'Name: {user.name} \n'
     #                   f'Message: {user.message} \n',
     #           from_email=user.email,
-    #           recipient_list=['alexwiky@gmail.com'])
+    #           recipient_list=['alexnd.oprea@gmail.com'])
     return redirect(reverse_lazy('homepage'))
