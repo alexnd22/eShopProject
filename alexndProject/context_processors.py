@@ -15,4 +15,5 @@ def navbar_data(request):
         count = sum([c.quantity for c in cart_items])
     else:
         count = 0
+
     return {'categories': Category.objects.all(), 'cart_items_count': count}

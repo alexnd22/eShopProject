@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import TextInput, Textarea, HiddenInput
+from django.forms import TextInput, Textarea
 
 from category.models import Category
 
@@ -44,4 +44,3 @@ class CategoryFormUpdate(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CategoryFormUpdate, self).__init__(*args, **kwargs)
         self.fields['name'].label = 'Your name'
-        # self.fields['name'].widget = HiddenInput()

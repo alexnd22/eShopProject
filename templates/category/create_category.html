@@ -3,26 +3,27 @@
     Create a new category
 {% endblock %}
 {% block content %}
-    <div class="container-fluid">
         <div class="row">
-
-            <div class="col-md-6 offset-md-3">
-                <div>
-                    <h1 class=text-center> Create a new category</h1>
+            <div class="col-md-6 offset-md-3" >
+            <div class="card" style="margin: 70px">
+                <div class="card-header">
+                    <h4 class=text-center> Create a new category</h4>
                 </div>
                 <form method="post">
                     {% csrf_token %}
-                    {#                     {{ form.as_p }}#}
+                    <div class="card-body">
                     {% for field in form %}
                         {{ field.label }}
                         {{ field }}
                         {{ field.errors }}
                     {% endfor %}
-                    <div class="text-center">
+                    </div>
+
+                    <div class="card-footer text-center">
                         <button type="submit" class="btn btn-outline-primary">Save a new category</button>
                     </div>
                 </form>
             </div>
+            </div>
         </div>
-    </div>
 {% endblock %}

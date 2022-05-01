@@ -13,7 +13,9 @@ urlpatterns = [
     path('detail-product/<int:pk>/', views.ProductDetailView.as_view(), name='detail_product'),
     path('detail-product-with-popup/<int:pk>/', views.delete_product_with_popup, name='detail_product_with_popup'),
     path('products-per-category/<int:pk>/', views.get_products_per_category, name='products_per_category'),
-    path('add-product-to-cart/', views.add_products_to_cart, name='add_product_to_cart')
+    path('add-product-to-cart/', views.add_products_to_cart, name='add_product_to_cart'),
+    path('delete_products_to_cart/<int:pk>/', views.delete_products_to_cart, name='delete_product_to_card'),
+    path('success_order/', views.SuccessOrderTemplateView.as_view(), name='success_order')
 
 ]
 if settings.DEBUG:

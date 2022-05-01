@@ -1,53 +1,19 @@
-.btn-outline-primary {
-    color: black;
-}
-
-.btn-outline-primary:hover {
-    color: greenyellow;
-}
-
-.btn-primary {
-    color: black;
-}
-
-.btn-primary:hover {
-    color: greenyellow;
-}
-
-.btn-outline-secondary {
-    color: black;
-}
-
-.btn-outline-secondary:hover {
-    color: turquoise;
-}
-
-.btn-secondary {
-    color: black;
-}
-
-.btn-secondary:hover {
-    color: turquoise;
-}
-
-.btn-success {
-    color: white;
-}
-
-.btn-success:hover {
-    color: yellow;
-}
-
-.btn-danger {
-    color: white;
-}
-
-.btn-danger:hover {
-    color: yellow;
-}
-
 
 .errorlist {
     color: red;
     list-style-type: none;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
 }

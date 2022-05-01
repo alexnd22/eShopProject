@@ -7,17 +7,22 @@
         <div class="row">
 
             <div class="col-md-6 offset-md-3">
-                <div>
-                    <h1 class=text-center>Create a new product</h1>
+                <div class="card">
+                <div class="card-header">
+                    <h4 class=text-center>Create a new product</h4>
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
+                    <div class="card-body">
                     {{ form.as_p }}
-                    <div class="text-center">
+                    </div>
+                    <div class="card-footer text-center">
+
                         <button type="submit" class="btn btn-outline-secondary">Save a new product</button>
                     </div>
                 </form>
+                </div>
             </div>
         </div>
-    </div>
+    </div><br><br>
 {% endblock %}

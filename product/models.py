@@ -14,6 +14,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     is_stock = models.CharField(max_length=10, choices=stock_choices, null=True, blank=True)
     release = models.DateField(null=True, blank=True)
+    quantity = models.IntegerField(null=True, blank=True)
     # email = models.EmailField(max_length=30)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -41,7 +42,7 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.quantity} x {self.product.name} in {self.cart}'
+        return f'{self.quantity} x {self.product.name}'
 
     def get_total(self):
         return self.product.price * self.quantity
