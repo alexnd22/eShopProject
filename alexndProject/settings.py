@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-bjrv5s3gts_6_jo@ry)_gm1-x=xcih(w15qn05_!dp!9-=k7l5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eshopproject22.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['eshopproject22.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'category',
     'product',
-    'userextend'
+    'userextend',
+    'contact'
 ]
 
 MIDDLEWARE = [

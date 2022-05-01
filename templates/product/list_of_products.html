@@ -3,46 +3,90 @@
     List of products
 {% endblock %}
 {% block content %}
-    <div class="container-fluid" style="padding: 0 10%">
         <div class="text-center">
-            <br>
-            <br>
-            <br>
+
             <h3> List of products</h3>
             <br>
             <br>
         </div>
         <div class="row align-items-start">
+        <div class="card">
+         <form method="get">
+                <div class="card-body">
+                    <div class="row">
+                        {% for field in my_Filter.form %}
+                            <div class="col">
+                            <label class="col col-form-label">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button type="submit" class="btn btn-success">Search</button>
+                </div>
+            </form>
+        </div>
+        </div>
+            <br><br>
+         <div class="row align-items-start">
             {% for product in all_products %}
-                <div class="col">
-                    <div class="card mb-4" style="width: 18rem;">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="text-center">{{ product.name|truncatewords:3 }}</h5>
+                        </div>
                         {% if product.image %}
                             <img src="{{ product.image.url }}" class="card-img-top" alt="..."
-                                 style="width: 70%; height: 200px">
+                                 style="height: 200px; padding-left: 20%; padding-right: 20%">
                         {% endif %}
                         <div class="card-body">
-                            <h5 class="card-title">{{ product.name|truncatewords:2 }}</h5>
-                            <p class="card-text">{{ product.description|truncatewords:3 }}</p>
 
-                            <form method="post" action="{% url 'add_product_to_cart' %}">
-                                {% csrf_token %}
-                                <input type="hidden" name="quantity" value="1">
-                                <input type="hidden" name="product_id" value="{{ product.id }}">
-                                <button type="submit" class="btn btn-primary mb-1">
-                                    Add Cart
-                                </button>
-                            </form>
+                            <p class="card-text">{{ product.description|truncatewords:5 }}</p>
+                            <h4 style="color:red" class="text-center">{{ product.price }} lei</h4>
+                        </div>
+                        <div class="card-footer text-center">
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                   id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </a>
 
-                            <a href="{% url 'update_product' product.id %}" class="btn btn-primary">Update</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li>
+                                        <form method="post" action="{% url 'add_product_to_cart' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="quantity" value="1">
+                                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                                            <button type="submit" class="dropdown-item">
+                                                Add Cart
+                                            </button>
+                                        </form>
+                                    </li>
+                                    {% if perms.product.change_product %}
+                                    <li><a href="{% url 'update_product' product.id %}" class="dropdown-item">Update</a>
+                                    </li>
+                                    {% endif %}
+                                {% if perms.product.delete_product %}
+                                    <li>
+                                        <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">
+                                            Delete
+                                        </button>
+                                    </li>
+                                {% endif %}
+                                {% if perms.product.view_product %}
+                                    <li>
+                                        <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#details_{{ product.id }}">
+                                            Details
+                                        </button>
 
-                            {#                            <a href="{% url 'delete_product' product.id %}" class="btn btn-primary">Delete</a>#}
-                            {#                            <a href="{% url 'detail_product' product.id %}" class="btn btn-primary">Details</a>#}
+                                    </li>
+                                {% endif %}
+                                </ul>
+                            </div>
 
-
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                Delete
-                            </button>
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                  aria-hidden="true">
@@ -68,10 +112,6 @@
                                 </div>
                             </div>
 
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#details_{{ product.id }}">
-                                Details
-                            </button>
 
                             <div class="modal fade" id="details_{{ product.id }}" tabindex="-1"
                                  aria-labelledby="exampleModalLabel"
@@ -95,11 +135,10 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-    </div>
+    <br><br>
 {% endblock %}

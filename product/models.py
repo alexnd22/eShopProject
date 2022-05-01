@@ -42,7 +42,7 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.quantity} x {self.product.name} in {self.cart}'
+        return f'{self.quantity} x {self.product.name}'
 
     def get_total(self):
         return self.product.price * self.quantity
