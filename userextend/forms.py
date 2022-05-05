@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, SetPasswordForm, PasswordResetForm
-from django.contrib.auth.models import User
-from django.forms import TextInput, EmailInput, CheckboxInput
+from django.forms import TextInput, EmailInput
 
 from userextend.models import UserExtend
 

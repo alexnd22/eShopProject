@@ -36,8 +36,8 @@ def checkout_view(request):
     cart.save()
     for product in list_with_products:
         all_products += f'{product}; '
-    message = f'Dear {request.user.first_name} {request.user.last_name}, your order has been confirmed and' \
-              f' will be delivered to your address {UserExtend.objects.get(user_ptr_id=request.user.id).address}.\n\n\n ' \
+    message = f'Dear {request.user.first_name} {request.user.last_name}, your order has been confirmed and ' \
+              f'will be delivered to your address {UserExtend.objects.get(user_ptr_id=request.user.id).address}.\n\n\n' \
               f'The ordered products are: {all_products}'
     send_mail('Order confirmation', message, from_email=EMAIL_HOST_USER, recipient_list=[request.user.email])
 

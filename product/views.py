@@ -48,6 +48,7 @@ class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
     success_url = reverse_lazy('list_of_products')
     permission_required = 'product.delete_product'
 
+
 @login_required()
 @permission_required('product.delete_product')
 def delete_product_with_popup(request, pk):
@@ -89,7 +90,7 @@ def get_open_cart(request):
 
 @login_required(login_url='/login/')
 def add_products_to_cart(request):
-     if request.method == 'POST':
+    if request.method == 'POST':
         product_id = request.POST.get('product_id')
         quantity = int(request.POST.get('quantity', 1))
         cart = get_open_cart(request)
@@ -101,8 +102,8 @@ def add_products_to_cart(request):
         else:
             CartItem.objects.create(cart=cart, product_id=product_id, quantity=quantity)
         return redirect(request.META['HTTP_REFERER'])
-     else:
-         return redirect('list_of_products')
+    else:
+        return redirect('list_of_products')
 
 
 @login_required(login_url='/login/')
@@ -113,4 +114,3 @@ def delete_products_to_cart(request, pk):
 
 class SuccessOrderTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'product/success_shopping.html'
-

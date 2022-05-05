@@ -3,8 +3,8 @@
     Create a new category
 {% endblock %}
 {% block content %}
-        <div class="row">
-            <div class="col-md-6 offset-md-3" >
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
             <div class="card" style="margin: 70px">
                 <div class="card-header">
                     <h4 class=text-center> Create a new category</h4>
@@ -12,11 +12,11 @@
                 <form method="post">
                     {% csrf_token %}
                     <div class="card-body">
-                    {% for field in form %}
-                        {{ field.label }}
-                        {{ field }}
-                        {{ field.errors }}
-                    {% endfor %}
+                        {% for field in form %}
+                            {{ field.label }}
+                            {{ field }}
+                            {{ field.errors }}
+                        {% endfor %}
                     </div>
 
                     <div class="card-footer text-center">
@@ -24,6 +24,6 @@
                     </div>
                 </form>
             </div>
-            </div>
         </div>
+    </div>
 {% endblock %}

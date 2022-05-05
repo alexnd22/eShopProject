@@ -14,7 +14,7 @@ class ProductFilter(django_filters.FilterSet):
     def __init__(self, *args, **kwargs):
         super(ProductFilter, self).__init__(*args, **kwargs)
         self.filters['name'].field.widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter name'})
-        self.filters['price'].field.widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter price' })
+        self.filters['price'].field.widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter price'})
         self.filters['category'].field.widget.attrs.update({'class': 'form-control'})
 
 
@@ -30,6 +30,7 @@ class ProductPerCategoryFilter(django_filters.FilterSet):
     def __init__(self, *args, **kwargs):
         super(ProductPerCategoryFilter, self).__init__(*args, **kwargs)
         self.filters['name'].field.widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter name'})
-        self.filters['price__gte'].field.widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter price' })
-        self.filters['price__lte'].field.widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter price' })
-
+        self.filters['price__gte'].field.widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Please enter price'})
+        self.filters['price__lte'].field.widget.attrs.update(
+            {'class': 'form-control', 'placeholder': 'Please enter price'})

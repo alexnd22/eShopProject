@@ -12,6 +12,5 @@ class CategoryFilter(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super(CategoryFilter, self).__init__(*args, **kwargs)
-        self.filters['name'].field.widget.attrs.update({'class': 'form-control',  'placeholder': 'Please enter name'})
+        self.filters['name'].field.widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter name'})
         self.filters['active'].field.widget.attrs.update({'class': 'form-control'})
-
